@@ -4,14 +4,11 @@ services:
   - docker
 
 env:
-  global:
-    DOCKER_COMPOSE_VERSION: 1.5.2
   matrix:
     - VIRGO_VERSION=3.7.0
     - VIRGO_VERSION=3.6.4
     - VIRGO_VERSION=3.6.4-jre7-alpine
 
-script:
-  - echo $VIRGO_VERSION
-  - echo $TRAVIS_TEST_RESULT
- 
+script: 
+  - docker version
+  - ./run-test.sh
