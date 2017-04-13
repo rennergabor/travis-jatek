@@ -14,3 +14,5 @@ env:
 
 script:
   - echo $VIRGO_VERSION
+  - echo $TRAVIS_TEST_RESULT
+ 
