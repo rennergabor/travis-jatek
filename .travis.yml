@@ -9,6 +9,10 @@ env:
     - VIRGO_VERSION=3.6.4
     - VIRGO_VERSION=3.6.4-jre7-alpine
 
-script: 
+before_script:
   - docker version
+  - docker build -t virgo ./$VIRGO_VERSION
+  - docker run -d -p 8080:8080 -p 8443:8443 virgo
+
+script: 
   - ./run-test.sh

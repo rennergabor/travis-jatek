@@ -1,0 +1,22 @@
+FROM openjdk:8-jre
+MAINTAINER Gabor Renner <grenner@intrend.hu>
+
+ENV VIRGO_VERSION 3.7.0.RELEASE
+ENV VIRGO virgo-tomcat-server-$VIRGO_VERSION
+ENV VIRGO_HOME /opt/virgo
+
+RUN \
+	curl -o virgo.zip -L http://www.eclipse.org/downloads/download.php?file=/virgo/release/VP/$VIRGO_VERSION/$VIRGO.zip\&r=1 && \
+	mkdir -p /opt && \
+	unzip virgo.zip -d /opt/ && \
+	rm virgo.zip && \
+	ln -s /opt/$VIRGO $VIRGO_HOME && \
+	useradd -r -M -d $VIRGO_HOME virgo && \
+	chown virgo:virgo /opt/$VIRGO -R
+
+USER virgo
+
+WORKDIR $VIRGO_HOME
+EXPOSE 8080
+
+CMD ["bin/startup.sh", "-clean"]
