@@ -7,7 +7,7 @@ env:
   global:
     DOCKER_COMPOSE_VERSION: 1.5.2
 
-    VIRGO_VERSION:
+  VIRGO_VERSION:
     - 3.7.0
     - 3.6.4
     - 3.6.4-jre7-alpine
